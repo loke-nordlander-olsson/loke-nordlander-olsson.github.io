@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Store</title>
+	<script type="text/javascript">
+		// Variable that contains items
+		var item = ["Umbrella", "Phone", "Hat"];
+
+		// How much money you have
+		var cash = 120;
+
+		// Tells how much money you have
+		alert("You currently have " + cash + "$")
+
+		// Tells how many items are in console log
+		console.log("Amount of items: " + item.length);
+
+		// Variable that contains an array of different information
+		var info = ["This item costs ", "That item is out of stock.", "You now have ", "Okay.", "Do you want to buy it?", "Invalid command."];
+
+		// A function that will check how much money the person has
+		// This happens every time you buy something
+		// If it is less than zero, you get sent out and the page refreshes
+		// The for-loop continues until every array in the variable has been said
+		// It adds on each time in relation to the amount of arrays, 0 to 2 in this case.
+		function money_left() {
+			if (cash < 0) {
+				var user = prompt("What is your name?");
+				alert("Alright, " + user + ", you've exceeded your credit card. I'm calling my men to throw you out. Come back when you've got more cash.");
+				var people = ["Stanley.", "Jacob.", "Charles."]
+				for (var men = 0; men < people.length; men++) {
+					alert(people[men]);
+				}
+				alert("Throw 'em out!")
+				location.reload();
+			}
+			else {
+				var answer = prompt("Are you done?");
+
+				if (answer.toLowerCase() == "yes") {
+					window.close();
+				}
+				else if (answer.toLowerCase() == "no") {
+					alert(info[3]);
+				}
+				else {
+					alert(info[5]);
+				}
+			}
+		}
+
+		// Alerts how much the item costs with the help of array + the cost
+		// Asks if you want to buy
+		// If the answer is yes, removes 20 from the cash variable
+		// If the answer is no, responds with a variable with an array
+		// Any other answer gives information about invalid input
+		function umbrella() {
+			alert(info[0] + "20$");
+
+			var question = prompt(info[4]);
+
+			if (question.toLowerCase() == "yes") {
+				cash -= 20;
+				alert(info[2] + cash + "$");
+				money_left();
+			}
+			else if (question.toLowerCase() == "no") {
+				alert(info[3]);
+			}
+			else {
+				alert(info[5])
+			}
+		}
+
+		// Alerts user that it is out of stock
+		function phone() {
+			alert(info[1]);
+		}
+
+		// Pretty much the same as the umbrella function
+		function hat() {
+			alert(info[0] + "30$")
+
+			var question = prompt(info[4]);
+
+			if (question.toLowerCase() == "yes") {
+				cash -= 30;
+				alert(info[2] + cash + "$");
+				money_left();
+			}
+			else if (question.toLowerCase() == "no") {
+				alert(info[3]);
+			}
+			else {
+				alert(info[5]);
+			}
+		}
+	</script>
+	<style>
+		html {
+			background-image: linear-gradient(to right, blue, navy, darkblue);
+		}
+		body {
+			height: 100%;
+		}
+		/*All images have borders, fixed sizes and a 2 pixel gap on the bottom*/
+		/*There is flex that makes the next element appear on the next line*/
+		img {
+			height: 100px;
+			width: 100px;
+			display: flex;
+			border-style: solid;
+			margin-bottom: 2px;
+		}
+		/*All buttons have the same width, style has been decided*/
+		button {
+			width: 104.8px;
+			border-radius: 3px;
+			background-color: peachpuff;
+			font-size: 120%;
+		}
+		button:hover {
+			color: darkred;
+		}
+		h1 {
+			border-style: solid;
+			width: fit-content;
+			padding: 1px 5px;
+			background-color: navajowhite;
+		}
+		div {
+			width: 104.8;
+		}
+		/*Just something to add a background for the products*/
+		.sidebar {
+			background-color: #7f91ff;
+			position: absolute;
+			width: 160px;
+			height: 101vh;
+			z-index: -1;
+			margin-top: -30px;
+			margin-left: -10px;
+			border-right: ridge;
+			border-width: 4px;
+			border-color: turquoise;
+		}
+	</style>
+</head>
+<body>
+	<div class="sidebar">
+		<!-- Empty, for the background -->
+	</div>	
+	<!-- Headers and images displaying what it is, and a button with function  -->
+	<div class="umbrella">
+		<h1>Umbrella</h1>
+		<img src="https://m.media-amazon.com/images/I/61g7qrq9bQL._SL1200_.jpg" alt="umbrella">
+		<button onclick="umbrella()">Buy 1 umbrella</button>
+	</div>
+	<div class="phone">
+		<h1>Phone</h1>
+		<img src="https://auspost.com.au/shop/static/WFS/AusPost-Shop-Site/-/AusPost-Shop/en_AU/product/55993-AusPost/2/resized_300x300.jpg" alt="phone">
+		<button onclick="phone()">Buy 1 phone</button>
+	</div>
+	<div class="hat">
+		<h1>Hat</h1>
+		<img src="https://hatshop.se/images/zoom/hoghatt1.jpg" alt="hat">
+		<button onclick="hat()">Buy 1 hat</button>
+	</div>
+</body>
+</html>
